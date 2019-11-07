@@ -1,0 +1,1 @@
+export EnderecoServidor="http://localhost:5000"

@@ -1,0 +1,75 @@
+#!/usr/bin/env python3
+import os
+import sys
+from aps1 import *
+import requests 
+
+
+class Tarefas():
+	def __init__(self, tempo=0, dificuldade=0):
+		self.tempo = tempo
+		self.dificuldade = dificuldade
+
+
+URLbase = os.environ['EnderecoServidor']
+print(URLbase)
+
+acao = sys.argv[1]
+if len(sys.argv) >= 3:
+
+	id_tarefa = int(sys.argv[2])
+if len(sys.argv) == 4:
+	tempo = int(sys.argv[2])
+	dificuldade = int(sys.argv[3])
+if len(sys.argv) == 5:
+	tempo = int(sys.argv[2])
+	dificuldade = int(sys.argv[3])
+	id_tarefa = int(sys.argv[4])
+
+PARAMS = {"tempo" : 0, "dificuldade" : 0} 
+  
+#Tarefas
+if acao == "adicionar":
+	print("adicionar")
+	URL = URLbase + "/Tarefa"
+	r = requests.post(url = URL, json = PARAMS) 
+	print(r)
+
+elif acao == "listar":
+	print("listar")
+	URL = URLbase + "/Tarefa"
+	r = requests.get(url = URL) 
+	print(r)
+
+#TarefaID
+elif acao == "buscar":
+	print("buscar")
+	URL = URLbase + "/Tarefa/{0}".format(id_tarefa)
+	r = requests.get(url = URL) 
+	print(r)
+	
+elif acao == "apagar":
+	print("apagar")
+	URL = URLbase + "/Tarefa/{0}".format(id_tarefa)
+	r = requests.delete(url = URL, json = PARAMS) 
+	print(r)
+
+elif acao == "atualizar":
+	print("atualizar")
+	URL = URLbase + "/Tarefa/{0}".format(id_tarefa)
+	r = requests.put(url = URL, json = PARAMS) 
+	print(r)
+
+elif acao == "help":
+	print("""
+		- Para adicionar uma tarefa digite:
+		adicionar <tempo de duracao da tarefa> <dificuldade da tarefa> \n
+		- Para listar todas as tarefas digite:
+		listar \n
+		- Para buscar uma tarefa digite:
+		buscar <id da tarefa> \n
+		- Para apagar uma tarefa digite:
+		apagar <id da tarefa> \n
+		- Para atualizar uma tarefa digite:
+		atualizar <tempo de duracao da tarefa> <dificuldade da tarefa> <id da tarefa> \n
+		""")
