@@ -1,1 +1,1 @@
-@reboot source home/ubuntu/Cloud-APSs/script_webserver.sh
+@reboot source Cloud-APSs/script_webserver.sh
