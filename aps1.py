@@ -78,10 +78,14 @@ def Tarefa():
 	if flask.request.method == 'POST':
 		# adiciona uma tarefa
 		vai = []
-		for x in db.tarefas.find().sort("_id",-1):
-			vai.append(x)
-			break
-		add_tarefa(Tarefas(request.get_json()['tempo'], request.get_json()['dificuldade']), int(vai[0]['_id']) + 1)
+		if db.tarefas.find() != []:
+			for x in db.tarefas.find().sort("_id",-1):
+				vai.append(x)
+				break
+			iii = int(vai[0]['_id']) + 1
+		else:
+			iii = 0
+		add_tarefa(Tarefas(request.get_json()['tempo'], request.get_json()['dificuldade']), iii)
 		id_adicionado += 1
 		return ("ok", 200)
 	else:
