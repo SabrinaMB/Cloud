@@ -78,7 +78,9 @@ def Tarefa():
 	if flask.request.method == 'POST':
 		# adiciona uma tarefa
 		vai = []
-		if db.tarefas.find() != []:
+		for x in tarefas.find():
+			vai.append(x)
+		if vai != []:
 			for x in db.tarefas.find().sort("_id",-1):
 				vai.append(x)
 				break
