@@ -81,7 +81,7 @@ def Tarefa():
 		for x in tarefas.find():
 			vai.append(x)
 		if vai != []:
-			for x in db.tarefas.find().sort("_id",-1):
+			for x in tarefas.find().sort("_id",-1):
 				iii = int(x['_id']) + 1
 				break
 		else:
