@@ -83,7 +83,6 @@ def Tarefa():
 		if vai != []:
 			for x in db.tarefas.find().sort("_id",-1):
 				vai.append(x)
-				break
 			iii = int(vai[0]['_id']) + 1
 		else:
 			iii = 0
@@ -124,28 +123,6 @@ def TarefaID(id_task):
 @app.route('/healthcheck')
 def healthy():
 	return ("", 200)
-
-
-
-# @app.route('/', defaults={'path': ''})
-# @app.route('/<path:path>')
-# def catch_all(path, methods=['GET', 'PUT', 'DELETE', 'POST']):
-# 	if flask.request.method == 'DELETE':
-# 		remove_tarefa(id_task)
-# 		return ("ok", 200)
-# 	elif flask.request.method == 'PUT':
-# 		print(request.get_json())
-# 		update_tarefa(Tarefas(request.get_json()['tempo'], request.get_json()['dificuldade']), id_task)
-# 	elif flask.request.method == 'POST':
-# 		add_tarefa(Tarefas(request.get_json()['tempo'], request.get_json()['dificuldade']))
-# 		return ("ok", 200)
-# 	elif flask.request.method == 'GET':
-# 		if dictglobal != {}:
-# 			return(str(dictglobal), 200)
-# 		else:
-# 			return("dict vazio", 400)
-# 	else:
-#     	return 'You want path: %s' % path
 
 
 # • Teste o serviço acima em localhost, olhando como o dicionário é alterado. Atenção na hora em que serializar
