@@ -82,8 +82,8 @@ def Tarefa():
 			vai.append(x)
 		if vai != []:
 			for x in db.tarefas.find().sort("_id",-1):
-				vai.append(x)
-			iii = int(vai[0]['_id']) + 1
+				iii = int(x['_id']) + 1
+				break
 		else:
 			iii = 0
 		add_tarefa(Tarefas(request.get_json()['tempo'], request.get_json()['dificuldade']), iii)
